@@ -1,0 +1,2 @@
+# Android_viewbinding_template_test
+Android_viewbinding_template_test
