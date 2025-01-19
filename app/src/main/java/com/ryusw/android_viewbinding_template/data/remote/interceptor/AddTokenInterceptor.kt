@@ -12,18 +12,37 @@ import okhttp3.Response
 class AddTokenInterceptor(
     private val testPrefs : BookSharedPreference
 ): Interceptor {
+
+    // intercept 메서드 오버라이드
+    // 이 메서드는 네트워크 요청이 발생할 때마다 호출됩니다.
     override fun intercept(chain: Interceptor.Chain): Response {
+
+        // 현재 요청(Request) 객체를 가져옵니다.
         val request = chain.request()
+
+        // 요청을 수정하기 위한 Builder 객체를 생성합니다.
         val builder = request.newBuilder()
 
         // 인메모리 데이터로 가지고 있음
+        // Api.ACCESS_TOKEN이 비어있는 경우(초기 상태 또는 토큰 갱신이 필요한 경우)에만 로컬 저장소에서 토큰을 가져옵니다.
+        // ifEmpty 함수는 문자열이 비어있거나 null인 경우 람다식을 실행합니다.
         Api.ACCESS_TOKEN.ifEmpty {
+            // runBlocking을 사용하여 코루틴을 동기적으로 실행합니다.
+            // 로컬 저장소 접근은 I/O 작업이므로 코루틴에서 실행해야 합니다.
             runBlocking {
+                // testPrefs.query를 통해 로컬 저장소(SharedPreference)에서 토큰을 가져와 Api.ACCESS_TOKEN에 저장합니다.
                 Api.ACCESS_TOKEN = testPrefs.query
             }
         }
 
+        // Authorization 헤더에 Bearer 토큰을 추가합니다.
+        // "Bearer " 뒤에 실제 토큰 값을 붙여서 헤더 값으로 설정합니다.
         builder.addHeader("Authorization", "Bearer ${Api.ACCESS_TOKEN}")
+
+        // 수정된 요청(Request)을 사용하여 체인을 진행하고 응답(Response)을 받습니다.
         return chain.proceed(builder.build())
     }
 }
+
+
+
