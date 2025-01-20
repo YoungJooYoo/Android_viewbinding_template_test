@@ -18,7 +18,7 @@ import com.ryusw.android_viewbinding_template.common.dialog.LoadingDialogFragmen
 abstract class BaseFragment<T : ViewBinding>(
     // inflate 함수는 레이아웃을 ViewBinding 객체로 변환하는 함수입니다.
     private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> T,
-) : Fragment() {
+) : Fragment() {  // lAYOUTiD, 코드상 필요없다.
 
     // ViewBinding 객체를 저장하는 변수입니다.
     // _binding은 null이 될 수 있으며, 생명주기에 따라 초기화됩니다.
@@ -34,6 +34,7 @@ abstract class BaseFragment<T : ViewBinding>(
     private var snackBar: Snackbar? = null
 
     // 프래그먼트의 View를 생성하는 메서드입니다.
+    //
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,15 +55,15 @@ abstract class BaseFragment<T : ViewBinding>(
 
     // 프래그먼트 초기화 작업을 정의하는 추상 메서드입니다.
     // 모든 상속 클래스에서 구현해야 합니다.
-    abstract fun initView()
+    abstract fun initView() // 강제 재정의
 
     // 데이터 관찰(Observing) 작업을 위한 메서드입니다.
     // 기본적으로 빈 메서드로 제공되며, 필요시 상속받아 재정의합니다.
-    open fun initObserving() {}
+    open fun initObserving() {} // 옵저빙은, 필요시 재정의
 
-    // 로딩 다이얼로그를 표시합니다.
+    // 로딩 다이얼로그를 표시합니다. 사용자에게 보여주어야한다. 그래서 !!
     protected fun showLoading() {
-        if (!LoadingDialogFragment.getInstance().isAdded) {
+        if (!LoadingDialogFragment.getInstance().isAdded) { // 로딩을 하나만....
             LoadingDialogFragment.getInstance().show(childFragmentManager, "loading")
         }
     }
@@ -88,7 +89,8 @@ abstract class BaseFragment<T : ViewBinding>(
         }
     }
 
-    // SafeArgs를 사용하여 네비게이션 동작을 수행합니다.
+    // SafeArgs를 사용하여 네비게이션 동작을 수행합니다. 네비게이션으로 화면전환 내비 컨트롤러, 화면전환 컨트롤개체,
+    // bundle 데이터 홀더 클래스 데이터 넘길수도!
     protected fun navigate(directions: NavDirections) {
         findNavController().navigate(directions)
     }

@@ -19,11 +19,11 @@ open class BaseActivity<T : ViewBinding>(
 ) : AppCompatActivity() {
 
     // ViewBinding 객체를 저장하는 변수입니다. null 허용.
-    private var _binding: T? = null
+    private var _binding: T? = null // 메모리 해제 위해서 null 받을 수 있게 선언
 
     // ViewBinding 객체를 반환하는 프로퍼티입니다. null이면 예외를 발생시킵니다.
     protected val binding
-        get() = requireNotNull(_binding)
+        get() = requireNotNull(_binding) // getter 설정, 명시적으로 null 아님을,
 
     /**
      * Activity가 생성될 때 호출됩니다.
@@ -37,7 +37,7 @@ open class BaseActivity<T : ViewBinding>(
         _binding = inflate(layoutInflater) // ViewBinding 객체 생성
         setContentView(binding.root) // ViewBinding 객체를 사용하여 화면에 표시
 
-        // Android 13 이상에서만 실행
+        // Android 15 이상에서만 실행
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             setEdgePadding()
         }
@@ -60,7 +60,8 @@ open class BaseActivity<T : ViewBinding>(
      * 뷰를 초기화하는 함수입니다.
      * BaseActivity를 상속받는 Activity에서 필요에 따라 오버라이드하여 사용합니다.
      */
-    open fun initView() {}
+    open fun initView() {} // open 구현도 아니어도, abstarct 겁데기 반드시 구현
+    //액티비티마다 뷰 초기화 할건지 아닌건지에 따라, open abstarct
 
     /**
      * Activity가 소멸될 때 호출됩니다.
