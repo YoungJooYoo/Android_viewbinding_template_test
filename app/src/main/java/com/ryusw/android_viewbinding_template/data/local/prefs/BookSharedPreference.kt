@@ -16,5 +16,7 @@ object BookSharedPreference {
     // get -> 해당 변수를 읽을때 마다 호출
     var query : String
         set(value) = bookPrefs.edit().putString(KEY_QUERY, value).apply()
-        get() = bookPrefs.getString(KEY_QUERY, "") ?: ""
+        get() = bookPrefs.getString(KEY_QUERY, "") ?: "" // 대충 3항 연산자. 널인지 아닌지만 판독
 }
+
+// 오브젝트는 싱글턴 = 처음부터 인스턴스로 짠! , 클래스는 클래스

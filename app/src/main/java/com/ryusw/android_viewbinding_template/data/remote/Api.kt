@@ -29,9 +29,9 @@ object Api {
         val okHttpClient = createOkHttpClient()  // OkHttp 클라이언트 생성
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BASE_URL) // rest 제외 후, 서버통신 가능한 URL
             .client(okHttpClient)  // OkHttp 클라이언트 설정
-            .addConverterFactory(GsonConverterFactory.create(gson))  // JSON 변환기 설정
+            .addConverterFactory(GsonConverterFactory.create(gson))  // JSON 변환기 설정, json을 컨버터 gson 사용, 인코더 디코더 다함
             .build()
     }
 
@@ -39,13 +39,17 @@ object Api {
     private fun createOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
 
-        // JWT 토큰 추가 인터셉터 설정
+        // JWT 토큰 추가 인터셉터 설정, 통신을 3자가 api를 부르면 안되니, jwt -> json 웹토큰
+        // 간단하 "회원정보", jwt 디코더가 많다 종류가. 알고리즘 암호화 ,sha256??
+        // jwt 디코더 후, 회원정보 맞춰보고, 맞으면 api가져가!!!
+        // 인터셉터 :: 통신을 가로채서 추가작업
         builder.addInterceptor(AddTokenInterceptor(BookSharedPreference))
 
-        // 연결 타임아웃 설정
+        // 연결 타임아웃 설정, 대부분 5초가 최대
         builder.connectTimeout(Duration.ofMillis(CONNECTION_TIME))
 
         // 로그 레벨 설정 (디버그 모드일 때만 HttpLoggingInterceptor 추가)
+        // 모든거 다 까보는 디버그 모드,
         if (BuildConfig.DEBUG) {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -55,7 +59,7 @@ object Api {
         return builder.build()
     }
 
-    // 서비스 생성 (외부에서 API 서비스 객체 생성을 위한 메서드)
+    // 서비스 생성 (외부에서 API 서비스 객체 생성을 위한 메서드) , 레트로핏, 인스턴스화 시켜준다. 통신할 수 있도록 만듬
     fun <T> createService(serviceClass: Class<T>): T {
         return retrofit.create(serviceClass)
     }

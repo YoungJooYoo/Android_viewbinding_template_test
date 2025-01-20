@@ -15,7 +15,7 @@ class BookApplication : Application() {
     // dI -> 디버깅이 힘들고, 가독성 문제, 레포지토리 -> 로컬데이터 or api로 통신
     // lazy를 사용하여 bookRepository 객체를 최초 접근 시 생성. lazy 앱의 초기 실행 속도를 향상시킬 수 있습니다.
     val bookRepository by lazy {
-        BookRepository(bookService = Api.createService(BookService::class.java))
+        BookRepository(bookService = Api.createService(BookService::class.java)) //
     }
 
     // 애플리케이션 생명주기의 시작 지점.
