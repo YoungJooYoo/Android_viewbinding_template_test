@@ -21,3 +21,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(
         }
     }
 }
+
+
+// 안드로이드 12부터 스플래시 스크린
+// 12이상부터, os 자체에서 스플래시 화면 지원
+// 스플래시 보여지는 중에 작업 처리,
+// 유저가 만들어도 커스텀 가능
