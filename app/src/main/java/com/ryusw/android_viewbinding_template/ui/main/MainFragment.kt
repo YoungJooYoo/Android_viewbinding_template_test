@@ -1,6 +1,7 @@
 package com.ryusw.android_viewbinding_template.ui.main
 
 import android.view.WindowManager
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import com.ryusw.android_viewbinding_template.BookApplication
 import com.ryusw.android_viewbinding_template.common.base.BaseFragment
@@ -22,6 +23,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
         }
         initButton()
         initState()
+        handleOnBackPressed()
     }
 
     override fun initObserving() {
@@ -49,6 +51,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
                 query = binding.editBook.text.toString(),
                 language = "en"
             )
+        }
+    }
+
+    private fun handleOnBackPressed() {
+        // 뒤로 가기 버튼이 눌렸을 때 실행될 코드
+        // 프레그먼트 마다로 가정하고 버튼 시나리오 생각, 최대한 캡슐화로 진행, 종속성 안가지게
+        // 프레그먼트 마다 커스텀
+        requireActivity().onBackPressedDispatcher.addCallback {
+            requireActivity().finish()
         }
     }
 }

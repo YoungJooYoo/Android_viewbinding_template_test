@@ -1,6 +1,7 @@
 package com.ryusw.android_viewbinding_template.ui
 
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.navigation.fragment.NavHostFragment
 import com.ryusw.android_viewbinding_template.R
 import com.ryusw.android_viewbinding_template.common.base.BaseActivity
