@@ -1,6 +1,8 @@
 package com.ryusw.android_viewbinding_template.ui.splash
 
+import android.widget.ImageView
 import androidx.activity.addCallback
+import com.ryusw.android_viewbinding_template.R
 import com.ryusw.android_viewbinding_template.common.base.BaseFragment
 import com.ryusw.android_viewbinding_template.databinding.FragmentSplashBinding
 
@@ -22,6 +24,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(
             }
         }
     }
+
 
     private fun handleOnBackPressed() {
         // 뒤로 가기 버튼이 눌렸을 때 실행될 코드
