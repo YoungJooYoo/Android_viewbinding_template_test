@@ -44,8 +44,8 @@
         android:id="@+id/splashImgView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/splash_img" />
+        android:scaleType="centerCrop" />
+        <!-- android:src="@drawable/splash_img" -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
