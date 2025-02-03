@@ -24,7 +24,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
         // as is 캐스팅 2가지, 블럭안에서만 is (블럭안에서만)
     }
 
-
     override fun initView() {
         super.initView()
         setNavigationListener()
