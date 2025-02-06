@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,28 +23,62 @@
         android:text="이용약관에\n동의해 주세요"
         android:textColor="@color/black"
         android:textSize="48sp"
-        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
     <TextView
         android:id="@+id/termssub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="원활한 서비스 이용을 위해 아래 약관에 동의해주세요."
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/termsmain"  app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/termsmain" />
+
+    <CheckBox
+        android:id="@+id/my_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전체 동의하기"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="276dp" />
+
+    <CheckBox
+        android:id="@+id/my_checkbox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[필수] 루티 이용약관 및 개인정보 수집 이용 동의"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="341dp" />
+
+    <CheckBox
+        android:id="@+id/my_checkbox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[선택] 마케팅 활용 및 광고성 정보 수신동의에 동의"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="389dp" />
 
     <Button
         android:id="@+id/btn_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="211dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="452dp"
         android:text="다음으로"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/termssub"  app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/termssub" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
